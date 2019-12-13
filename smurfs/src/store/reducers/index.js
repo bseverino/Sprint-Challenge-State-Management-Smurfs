@@ -25,7 +25,8 @@ const initialState = {
         age: 0,
         height: 0,
         heightValue: 0
-    }
+    },
+    heldId: null
 };
 
 const reducer = (state = initialState, action) => {
@@ -101,7 +102,8 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 isEditing: true,
-                inputValues: action.payload
+                inputValues: action.payload,
+                heldId: action.payload.id
             };
         case CANCEL_EDIT:
             return {
@@ -112,7 +114,8 @@ const reducer = (state = initialState, action) => {
                     age: 0,
                     height: 0,
                     heightValue: 0
-                }
+                },
+                heldId: null
             };
         case PUT_SMURF_START:
             return {
@@ -131,6 +134,7 @@ const reducer = (state = initialState, action) => {
                     height: 0,
                     heightValue: 0
                 },
+                heldId: null,
                 error: ''
             };
         case PUT_SMURF_FAILURE:
