@@ -23,7 +23,6 @@ export const handleHeight = e => {
 export const handleSubmit = (data) => dispatch => {
     dispatch({ type: HANDLE_SUBMIT });
     const newSmurf = {...data, id: Date.now()};
-    console.log(JSON.stringify(newSmurf));
 
     axios
         .post('http://localhost:3333/smurfs', newSmurf)

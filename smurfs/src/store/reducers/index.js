@@ -7,17 +7,24 @@ import {
     HANDLE_HEIGHT,
     HANDLE_SUBMIT,
     POST_SUCCESS,
-    POST_FAILURE
+    POST_FAILURE,
+    EDIT_SMURF,
+    CANCEL_EDIT,
+    PUT_SMURF_START,
+    PUT_SMURF_SUCCESS,
+    PUT_SMURF_FAILURE
 } from '../actions';
 
 const initialState = {
     smurfs: null,
     isFetching: false,
+    isEditing: false,
     error: '',
     inputValues: {
         name: '',
         age: 0,
-        height: 0
+        height: 0,
+        heightValue: 0
     }
 };
 
@@ -62,7 +69,8 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 inputValues: {
                     ...state.inputValues,
-                    height: action.payload
+                    height: `${action.payload}cm`,
+                    heightValue: action.payload
                 }
             };
         case HANDLE_SUBMIT:
@@ -76,13 +84,56 @@ const reducer = (state = initialState, action) => {
                 smurfs: action.payload,
                 isFetching: false,
                 inputValues: {
-                    ...state.inputValues,
                     name: '',
                     age: 0,
-                    height: 0
+                    height: 0,
+                    heightValue: 0
+                },
+                error: ''
+            };
+        case POST_FAILURE:
+            return {
+                ...state,
+                isFetching: false,
+                error: action.payload
+            };
+        case EDIT_SMURF:
+            return {
+                ...state,
+                isEditing: true,
+                inputValues: action.payload
+            };
+        case CANCEL_EDIT:
+            return {
+                ...state,
+                isEditing: false,
+                inputValues: {
+                    name: '',
+                    age: 0,
+                    height: 0,
+                    heightValue: 0
                 }
             };
-        case POST_SUCCESS:
+        case PUT_SMURF_START:
+            return {
+                ...state,
+                isFetching: true
+            };
+        case PUT_SMURF_SUCCESS:
+            return {
+                ...state,
+                smurfs: action.payload,
+                isFetching: false,
+                isEditing: false,
+                inputValues: {
+                    name: '',
+                    age: 0,
+                    height: 0,
+                    heightValue: 0
+                },
+                error: ''
+            };
+        case PUT_SMURF_FAILURE:
             return {
                 ...state,
                 isFetching: false,

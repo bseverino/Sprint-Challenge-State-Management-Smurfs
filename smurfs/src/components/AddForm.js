@@ -29,7 +29,7 @@ const AddForm = props => {
                 Height:
                 <input
                     type='number'
-                    value={props.inputValues.height}
+                    value={props.inputValues.heightValue}
                     onChange={props.handleHeight}
                 />
             </label>

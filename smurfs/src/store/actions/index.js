@@ -17,3 +17,14 @@ export {
     handleHeight,
     handleSubmit
 } from './formActions';
+
+export {
+    EDIT_SMURF,
+    CANCEL_EDIT,
+    PUT_SMURF_START,
+    PUT_SMURF_SUCCESS,
+    PUT_SMURF_FAILURE,
+    editSmurf,
+    cancelEdit,
+    putSmurf
+} from './modifyActions';
