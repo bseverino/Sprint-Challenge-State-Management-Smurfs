@@ -24,7 +24,11 @@ export {
     PUT_SMURF_START,
     PUT_SMURF_SUCCESS,
     PUT_SMURF_FAILURE,
+    DELETE_SMURF_START,
+    DELETE_SMURF_SUCCESS,
+    DELETE_SMURF_FAILURE,
     editSmurf,
     cancelEdit,
-    putSmurf
+    putSmurf,
+    deleteSmurf
 } from './modifyActions';

@@ -12,7 +12,10 @@ import {
     CANCEL_EDIT,
     PUT_SMURF_START,
     PUT_SMURF_SUCCESS,
-    PUT_SMURF_FAILURE
+    PUT_SMURF_FAILURE,
+    DELETE_SMURF_START,
+    DELETE_SMURF_SUCCESS,
+    DELETE_SMURF_FAILURE
 } from '../actions';
 
 const initialState = {
@@ -143,6 +146,24 @@ const reducer = (state = initialState, action) => {
                 isFetching: false,
                 error: action.payload
             };
+        case DELETE_SMURF_START:
+            return {
+                ...state,
+                isFetching: true
+            };
+        case DELETE_SMURF_SUCCESS:
+            return {
+                ...state,
+                smurfs: action.payload,
+                isFetching: false,
+                error: ''
+            }
+        case DELETE_SMURF_FAILURE:
+            return {
+                ...state,
+                isFetching: false,
+                error: action.payload
+            }
         default:
             return state;
     };
